@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import './App.css';
-import { useState } from 'react';
+import axios from "axios"
+
 
 function App() {
   const [data, setData] = useState(null)
