@@ -28,15 +28,21 @@ function App() {
 
   const tenMostPopulated = sortPopulatedCountries.slice(0, 10);
 
+  const newObj = {name:"world", population: 8037642469}
+  tenMostPopulated.unshift(newObj)
+
+  const maxPopulation = tenMostPopulated[0].population;
+  const scaleFactor = 500/maxPopulation
 
   return (
     <div className="App">
       <p className="world">World population</p>
       <p className="populated">Ten most populated countries</p>
       <div className='chart'>
-        {data.map((country, index) => (
-          <div key={index}>
-
+        {tenMostPopulated.map((country, index) => (
+          <div key={index} className='bar' style={{width: `${country.population * scaleFactor}px`}}>
+              <div className="bar-name">{country.name}</div>
+              <div className="bar-label">{country.population.toLocaleString()}</div>
           </div>
         ))}
       </div>
