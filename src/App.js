@@ -1,8 +1,12 @@
 import { useState, useEffect } from 'react';
+import {useMediaQuery} from 'react-responsive'
 import axios from "axios";
+import "./App.css";
 
 
 function App() {
+  const isDesktop = useMediaQuery({query: "(min-width: 1224px)"});
+  const isMobile = useMediaQuery({query: "(min-width: 1224px)"});
   const [data, setData] = useState(null);
 
   useEffect(() => {
@@ -36,13 +40,13 @@ function App() {
 
   return (
     <div className="App">
-      <p className="world">World population</p>
-      <p className="populated">Ten most populated countries</p>
+        <h3 className="world">World population</h3>
+        <h6 className="populated">Ten most populated countries</h6>
       <div className='chart'>
         {tenMostPopulated.map((country, index) => (
           <div key={index} className='bar' style={{width: `${country.population * scaleFactor}px`}}>
-              <div className="bar-name">{country.name}</div>
-              <div className="bar-label">{country.population.toLocaleString()}</div>
+              <p className="bar-name">{country.name}</p>
+              <p className="bar-label">{country.population.toLocaleString()}</p>
           </div>
         ))}
       </div>
